@@ -1,0 +1,18 @@
+type AccountId = text;
+type Account = 
+ record {
+   balance: int;
+   desc: text;
+   owner: principal;
+ };
+service : {
+  createAccount: (text, int, text) -> ();
+  getAccount: (text) -> (opt Account) query;
+  getAccountsCount: () -> (nat) query;
+  getAllAccounts: () -> (vec record {
+                               AccountId;
+                               Account;
+                             }) query;
+  transfer: (text, text, int) -> (bool);
+  whoami: () -> (principal);
+}
